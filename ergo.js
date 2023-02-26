@@ -1,6 +1,7 @@
 (function() {
 	let mouse_x = 0;
 	let mouse_y = 0;
+	let screen_vert_div = 3;
 	const canvas = document.getElementById("canvas");
 	const context = canvas.getContext("2d");
 
@@ -14,6 +15,20 @@
 			document.exitFullscreen();
 		}else {
 			document.documentElement.requestFullscreen();
+		}
+	}
+
+	window.onkeypress = function(e) {
+		switch(e.key) {
+			case "2":
+				screen_vert_div = 2;
+			break;
+			case "3":
+				screen_vert_div = 3;
+			break;
+			case "4":
+				screen_vert_div = 4;
+			break;
 		}
 	}
 
@@ -62,9 +77,8 @@
 		context.fillStyle = "#969696";
 		context.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
-		let div = 3;
-		for(let i = 1; i < div; i++) {
-			let part_height = window.innerHeight/div;
+		for(let i = 1; i < screen_vert_div; i++) {
+			let part_height = window.innerHeight/screen_vert_div;
 			drawLine(context, 0, part_height*i, window.innerWidth, part_height*i, "#00FF00", 5);
 		}
 
